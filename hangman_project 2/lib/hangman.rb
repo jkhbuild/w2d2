@@ -1,7 +1,15 @@
 class Hangman
   DICTIONARY = ["cat", "dog", "bootcamp", "pizza"]
-  random_word = DICTIONARY[rand(0..DICTIONARY.length-1)]
-  def initialize ()
+  def self.random_word
+    random_word = DICTIONARY.sample
+    random_word
+  end
+
+  def initialize
+    @secret_word = Hangman::random_word
+    @guess_word = Array.new(@secret_word.length, "_")
+    @attempted_chars = []
+    @remaining_incorrect_guesses = 5
   end
 
 end
