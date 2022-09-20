@@ -42,4 +42,33 @@ class Startup
         @employees.each { |employee| pay_employee(employee) }
     end
 
+    def average_salary
+        # title_count = Hash.new(0)
+        # total_salary = 0
+        # @employees.each { |employee| title_count[employee.title] += 1 }
+
+        # title_count.each { |title, count| total_salary += (count * salaries[title]) }
+
+        # total_salary / (employees.length)
+        total_salary = 0
+        @employees.each { |employee| total_salary += salaries[employee.title] }
+
+        total_salary / @employees.length
+    end
+
+    def close
+        @employees = []
+        @funding = 0
+    end
+
+    def acquire(acquired)
+        @funding += acquired.funding
+        acquired.salaries.each do |title, salary|
+            @salaries[title] = salary if !(@salaries.has_key?(title))
+        end
+        @employees += acquired.employees
+        acquired.close
+
+    end
+
 end
