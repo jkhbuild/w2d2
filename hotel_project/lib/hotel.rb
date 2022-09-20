@@ -46,7 +46,7 @@ class Hotel
 
     def list_rooms
         @rooms.each do |k, v|
-            puts k + v.available_space.to_s
+            puts k +" (" + v.available_space.to_s + ")"
         end
     end
 end
